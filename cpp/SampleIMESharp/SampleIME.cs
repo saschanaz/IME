@@ -16,10 +16,6 @@ namespace SampleIMESharp
         
         // destructor
 
-        // QueryInterface
-        // AddRef
-        // Release
-
         HRESULT ITfTextInputProcessorEx.Activate(ITfThreadMgr ptim, uint tid)
         {
             throw new NotImplementedException();
