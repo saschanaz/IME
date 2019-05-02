@@ -29,14 +29,16 @@ namespace SampleIMESharp
         {
             var pITfInputProcessorProfileMgr = new ITfInputProcessorProfileMgr();
 
+            var iconFile = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
+
             pITfInputProcessorProfileMgr.RegisterProfile(
                 Globals.SampleIMECLSID,
                 new LangID((0x04 << 10) & 0x02), // MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
                 Globals.SampleIMEGuidProfile,
                 TEXTSERVICE_DESC.ToCharArray(),
                 (uint)TEXTSERVICE_DESC.Length,
-                "".ToCharArray(),
-                0,
+                iconFile.ToCharArray(),
+                (uint)iconFile.Length,
                 unchecked((uint)-12), (IntPtr)null, 0, true, 0);
         }
     }
