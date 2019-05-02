@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using TSF.InteropTypes;
 using TSF.TypeLib;
 
 namespace SampleIMESharp
 {
+    [ComVisible(true)]
+    [Guid("89e7b5a2-4804-4131-9694-99bc5a2b97ca")]
     public partial class SampleIME : ITfTextInputProcessorEx,
         ITfFunctionProvider,
         ITfFunction,
@@ -16,27 +19,17 @@ namespace SampleIMESharp
         
         // destructor
 
-        HRESULT ITfTextInputProcessorEx.Activate(ITfThreadMgr ptim, uint tid)
+        public HRESULT Activate(ITfThreadMgr ptim, uint tid)
+        {
+            return ActivateEx(ptim, tid, 0);
+        }
+
+        public HRESULT Deactivate()
         {
             throw new NotImplementedException();
         }
 
-        HRESULT ITfTextInputProcessorEx.Deactivate()
-        {
-            throw new NotImplementedException();
-        }
-
-        HRESULT ITfTextInputProcessorEx.ActivateEx(ITfThreadMgr ptim, uint tid, TF_TMAE dwFlags)
-        {
-            throw new NotImplementedException();
-        }
-
-        HRESULT ITfTextInputProcessor.Activate(ITfThreadMgr ptim, uint tid)
-        {
-            throw new NotImplementedException();
-        }
-
-        HRESULT ITfTextInputProcessor.Deactivate()
+        public HRESULT ActivateEx(ITfThreadMgr ptim, uint tid, TF_TMAE dwFlags)
         {
             throw new NotImplementedException();
         }
