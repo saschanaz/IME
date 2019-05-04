@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TSF.InteropTypes;
 
 namespace SampleIMESharp
 {
@@ -12,6 +13,11 @@ namespace SampleIMESharp
 
         // CRITICAL_SECTION CS;
         // HFONT defaultlFontHandle;				// Global font object we use everywhere;
+
+        public static string TEXTSERVICE_MODEL = "Apartment";
+        // MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
+        public static LangID TEXTSERVICE_LANGID = new LangID((0x04 << 10) & 0x02);
+        public static uint TEXTSERVICE_ICON_INDEX = unchecked((uint)-12);
 
         //---------------------------------------------------------------------
         // SampleIME CLSID
