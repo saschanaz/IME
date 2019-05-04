@@ -1,16 +1,14 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TSF.TypeLib;
 
 namespace SampleIMESharp
 {
-    static class Register
+    static class ComRegister
     {
-        static readonly string RegInfo_Prefix_CLSID = "CLSID\\";
-        static readonly string RegInfo_Key_InProSvr32 = "InProcServer32";
-        static readonly string RegInfo_Key_ThreadModel = "ThreadingModel";
+        //static readonly string RegInfo_Prefix_CLSID = "CLSID\\";
+        //static readonly string RegInfo_Key_InProSvr32 = "InProcServer32";
+        //static readonly string RegInfo_Key_ThreadModel = "ThreadingModel";
 
         static readonly string TEXTSERVICE_DESC = "Sample IME";
 
@@ -25,7 +23,7 @@ namespace SampleIMESharp
             Guids.GUID_TFCAT_TIPCAP_SYSTRAYSUPPORT,
         };
 
-        static void RegisterProfiles()
+        public static void RegisterProfiles()
         {
             var pITfInputProcessorProfileMgr = new ITfInputProcessorProfileMgr();
 
@@ -42,14 +40,14 @@ namespace SampleIMESharp
                 Globals.TEXTSERVICE_ICON_INDEX, (IntPtr)null, 0, true, 0);
         }
 
-        static void UnregisterProfiles()
+        public static void UnregisterProfiles()
         {
             var pITfInputProcessorProfileMgr = new ITfInputProcessorProfileMgr();
 
             pITfInputProcessorProfileMgr.UnregisterProfile(Globals.SampleIMECLSID, Globals.TEXTSERVICE_LANGID, Globals.SampleIMEGuidProfile, 0);
         }
 
-        static void RegisterCategories()
+        public static void RegisterCategories()
         {
             var pCategoryMgr = new ITfCategoryMgr();
 
@@ -59,7 +57,7 @@ namespace SampleIMESharp
             }
         }
 
-        static void UnregisterCategories()
+        public static void UnregisterCategories()
         {
             var pCategoryMgr = new ITfCategoryMgr();
 
@@ -74,35 +72,35 @@ namespace SampleIMESharp
         //    hParentKey.DeleteSubKeyTree(lpszKey);
         //}
 
-        static void RegisterServer()
-        {
-            RegistryKey regKeyHandle;
-            RegistryKey regSubkeyHandle;
-            string achIMEKey;
-            string achFileName;
+        //static void RegisterServer()
+        //{
+        //    RegistryKey regKeyHandle;
+        //    RegistryKey regSubkeyHandle;
+        //    string achIMEKey;
+        //    string achFileName;
 
-            achIMEKey = RegInfo_Prefix_CLSID + Globals.SampleIMECLSID.ToString("B");
+        //    achIMEKey = RegInfo_Prefix_CLSID + Globals.SampleIMECLSID.ToString("B");
 
-            regKeyHandle = Registry.ClassesRoot.CreateSubKey(achIMEKey);
-            using (regKeyHandle)
-            {
-                regKeyHandle.SetValue("", TEXTSERVICE_DESC);
+        //    regKeyHandle = Registry.ClassesRoot.CreateSubKey(achIMEKey);
+        //    using (regKeyHandle)
+        //    {
+        //        regKeyHandle.SetValue("", TEXTSERVICE_DESC);
 
-                regSubkeyHandle = regKeyHandle.CreateSubKey(RegInfo_Key_InProSvr32);
-                using (regSubkeyHandle)
-                {
-                    achFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
-                    regSubkeyHandle.SetValue("", achFileName);
-                    regSubkeyHandle.SetValue(RegInfo_Key_ThreadModel, Globals.TEXTSERVICE_MODEL);
-                }
-            }
-        }
+        //        regSubkeyHandle = regKeyHandle.CreateSubKey(RegInfo_Key_InProSvr32);
+        //        using (regSubkeyHandle)
+        //        {
+        //            achFileName = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
+        //            regSubkeyHandle.SetValue("", achFileName);
+        //            regSubkeyHandle.SetValue(RegInfo_Key_ThreadModel, Globals.TEXTSERVICE_MODEL);
+        //        }
+        //    }
+        //}
 
-        static void UnregisterServer()
-        {
-            string achIMEKey = RegInfo_Prefix_CLSID + Globals.SampleIMECLSID.ToString("B");
+        //static void UnregisterServer()
+        //{
+        //    string achIMEKey = RegInfo_Prefix_CLSID + Globals.SampleIMECLSID.ToString("B");
 
-            Registry.ClassesRoot.DeleteSubKeyTree(achIMEKey);
-        }
+        //    Registry.ClassesRoot.DeleteSubKeyTree(achIMEKey);
+        //}
     }
 }

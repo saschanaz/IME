@@ -6,7 +6,7 @@ using TSF.TypeLib;
 namespace SampleIMESharp
 {
     [ComVisible(true)]
-    [Guid("89e7b5a2-4804-4131-9694-99bc5a2b97ca")]
+    [Guid("D2291A80-84D8-4641-9AB2-BDD1472C846B")]
     public partial class SampleIME : ITfTextInputProcessorEx,
         ITfFunctionProvider,
         ITfFunction,
@@ -16,7 +16,7 @@ namespace SampleIMESharp
         {
 
         }
-        
+
         // destructor
 
         public HRESULT Activate(ITfThreadMgr ptim, uint tid)
