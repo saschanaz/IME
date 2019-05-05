@@ -8,27 +8,41 @@ namespace SampleIMESharp
     partial class SampleIME
     {
         [ComRegisterFunction]
-        public static void Register(Type t)
+        public static void RegisterSTA(Type t)
         {
-            ComRegister.RegisterProfiles();
-            Thread thread = new Thread(() =>
-            {
-                ComRegister.RegisterCategories();
-            });
+            Thread thread = new Thread(() => Register());
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+            thread.Join();
+        }
+
+        public static void Register()
+        {
+            try
+            {
+                ComRegister.RegisterProfiles();
+                ComRegister.RegisterCategories();
+            }
+            catch (Exception err)
+            {
+                Unregister();
+                throw err;
+            }
         }
 
         [ComUnregisterFunction]
-        public static void Unregister(Type t)
+        public static void UnregisterSTA(Type t)
         {
-            ComRegister.UnregisterProfiles();
-            Thread thread = new Thread(() =>
-            {
-                ComRegister.UnregisterCategories();
-            });
+            Thread thread = new Thread(() => Unregister());
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+            thread.Join();
+        }
+
+        static void Unregister()
+        {
+            ComRegister.UnregisterProfiles();
+            ComRegister.UnregisterCategories();
         }
     }
 }
