@@ -1,18 +1,20 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace SampleIMESharp
 {
     partial class SampleIME
     {
         [ComRegisterFunction]
-        static void Register()
+        public static void Register(Type t)
         {
             ComRegister.RegisterProfiles();
             ComRegister.RegisterCategories();
         }
 
         [ComUnregisterFunction]
-        static void Unregister()
+        public static void Unregister(Type t)
         {
             ComRegister.UnregisterProfiles();
             ComRegister.UnregisterCategories();

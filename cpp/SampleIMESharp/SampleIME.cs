@@ -12,7 +12,7 @@ namespace SampleIMESharp
         ITfFunction,
         ITfFnGetPreferredTouchKeyboardLayout
     {
-        SampleIME()
+        public SampleIME()
         {
 
         }
