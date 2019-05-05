@@ -28,7 +28,7 @@ namespace SampleIMESharp
         {
             var pITfInputProcessorProfileMgr = new ITfInputProcessorProfileMgr();
 
-            var iconFile = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
+            var iconFile = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
             pITfInputProcessorProfileMgr.RegisterProfile(
                 Globals.SampleIMECLSID,
