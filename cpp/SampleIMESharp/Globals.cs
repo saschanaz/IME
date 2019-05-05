@@ -16,7 +16,7 @@ namespace SampleIMESharp
 
         public static string TEXTSERVICE_MODEL = "Apartment";
         // MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
-        public static LangID TEXTSERVICE_LANGID = new LangID((0x04 << 10) & 0x02);
+        public static LangID TEXTSERVICE_LANGID = new LangID((0x02 << 10) | 0x04);
         public static uint TEXTSERVICE_ICON_INDEX = unchecked((uint)-12);
 
         //---------------------------------------------------------------------
