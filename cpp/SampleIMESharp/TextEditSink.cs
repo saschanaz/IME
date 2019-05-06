@@ -12,5 +12,16 @@ namespace SampleIMESharp
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Init a text edit sink on the topmost context of the document.
+        /// Always release any previous sink.
+        /// </summary>
+        /// <param name="pDocMgr"></param>
+        /// <returns></returns>
+        private bool _InitTextEditSink(ITfDocumentMgr pDocMgr)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
