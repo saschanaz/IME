@@ -33,7 +33,7 @@ namespace SampleIMESharp
             if (_pCompositionProcessorEngine != null)
             {
                 LangID langidProfile;
-                Guid guidLanguageProfile = _pCompositionProcessorEngine.getLanguageProfile(out langidProfile);
+                Guid guidLanguageProfile = _pCompositionProcessorEngine.GetLanguageProfile(out langidProfile);
                 if ((langid.LCID == langidProfile.LCID) && guidProfile == guidLanguageProfile)
                 {
                     return true;
@@ -62,9 +62,18 @@ namespace SampleIMESharp
 
     class CompositionProcessorEngine
     {
+        private LangID _langid;
+        private Guid _guidProfile;
+
         public bool SetupLanguageProfile(LangID langid, Guid guidLanguageProfile, ITfThreadMgr pThreadMgr, uint tfClientId, bool isSecureMode, bool isComLessMode)
         {
             throw new NotImplementedException();
+        }
+
+        public Guid GetLanguageProfile(out LangID plangid)
+        {
+            plangid = _langid;
+            return _guidProfile;
         }
     }
 }
