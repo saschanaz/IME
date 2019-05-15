@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SampleIMESharp.BaseStructure;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TSF.InteropTypes;
@@ -62,9 +63,19 @@ namespace SampleIMESharp
 
     class CompositionProcessorEngine
     {
+        private class KEYSTROKE
+        {
+            public uint VirtualKey = 0;
+            public uint Modifiers = 0;
+            public KEYSTROKE_FUNCTION Function = KEYSTROKE_FUNCTION.FUNCTION_NONE;
+        }
+        private readonly KEYSTROKE[] _keystrokeTable = new KEYSTROKE[26];
+
         private LangID _langid;
         private Guid _guidProfile;
         private uint _tfClientId;
+
+        List<KEYSTROKE> _KeystrokeComposition;
 
         // Configuration data
         private bool _isWildcard;
@@ -124,7 +135,7 @@ namespace SampleIMESharp
 
         private void SetupKeystroke()
         {
-            throw new NotImplementedException();
+            SetKeystrokeTable(_KeystrokeComposition);
         }
 
         private void SetupPreserved(ITfThreadMgr pThreadMgr, uint tfClientId)
@@ -140,6 +151,14 @@ namespace SampleIMESharp
         private void SetupLanguageBar(ITfThreadMgr pThreadMgr, uint tfClientId, bool isSecureMode)
         {
             throw new NotImplementedException();
+        }
+
+        private void SetKeystrokeTable(List<KEYSTROKE> pKeystroke)
+        {
+            foreach (var pKS in _keystrokeTable)
+            {
+                pKeystroke.Add(pKS);
+            }
         }
 
         private void SetupPunctuationPair()
