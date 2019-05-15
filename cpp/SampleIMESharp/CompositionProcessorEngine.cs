@@ -30,7 +30,17 @@ namespace SampleIMESharp
             }
 
             // Is this already added?
-            
+            if (_pCompositionProcessorEngine != null)
+            {
+                LangID langidProfile;
+                Guid guidLanguageProfile = _pCompositionProcessorEngine.getLanguageProfile(out langidProfile);
+                if ((langid.LCID == langidProfile.LCID) && guidProfile == guidLanguageProfile)
+                {
+                    return true;
+                }
+            }
+
+            // Create composition processor engine
             if (_pCompositionProcessorEngine == null)
             {
                 _pCompositionProcessorEngine = new CompositionProcessorEngine();
@@ -40,6 +50,7 @@ namespace SampleIMESharp
                 return false;
             }
 
+            // setup composition processor engine
             if (!_pCompositionProcessorEngine.SetupLanguageProfile(langid, guidProfile, ThreadMgr, ClientId, IsSecureMode, IsComLess))
             {
                 return false;
