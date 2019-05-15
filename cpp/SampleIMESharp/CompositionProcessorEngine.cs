@@ -64,16 +64,97 @@ namespace SampleIMESharp
     {
         private LangID _langid;
         private Guid _guidProfile;
+        private uint _tfClientId;
 
+        // Configuration data
+        private bool _isWildcard;
+        private bool _isDisableWildcardAtFirst;
+        private bool _hasMakePhraseFromText;
+        private bool _isKeystrokeSort;
+        private bool _isComLessMode;
+
+        /// <summary>
+        /// Setup language profile for Composition Processor Engine.
+        /// </summary>
+        /// <param name="langid">Specify language ID</param>
+        /// <param name="guidLanguageProfile">Specify GUID language profile which GUID is as same as Text Service Framework language profile.</param>
+        /// <param name="pThreadMgr">ITfThreadMgr.</param>
+        /// <param name="tfClientId">TfClientId value.</param>
+        /// <param name="isSecureMode">secure mode</param>
+        /// <param name="isComLessMode"></param>
+        /// <returns></returns>
         public bool SetupLanguageProfile(LangID langid, Guid guidLanguageProfile, ITfThreadMgr pThreadMgr, uint tfClientId, bool isSecureMode, bool isComLessMode)
         {
-            throw new NotImplementedException();
+            if ((tfClientId == 0) && (pThreadMgr == null))
+            {
+                return false;
+            }
+
+            _isComLessMode = isComLessMode;
+            _langid = langid;
+            _guidProfile = guidLanguageProfile;
+            _tfClientId = tfClientId;
+
+            SetupPreserved(pThreadMgr, tfClientId);
+            InitializeSampleIMECompartment(pThreadMgr, tfClientId);
+            SetupPunctuationPair();
+            SetupLanguageBar(pThreadMgr, tfClientId, isSecureMode);
+            SetupKeystroke();
+            SetupConfiguration();
+            SetupDictionaryFile();
+
+            return true;
         }
 
+        /// <summary>
+        /// Get language profile.
+        /// </summary>
+        /// <param name="plangid"></param>
+        /// <returns></returns>
         public Guid GetLanguageProfile(out LangID plangid)
         {
             plangid = _langid;
             return _guidProfile;
+        }
+
+        public LangID GetLocale()
+        {
+            return _langid;
+        }
+
+        private void SetupKeystroke()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetupPreserved(ITfThreadMgr pThreadMgr, uint tfClientId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetupConfiguration()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetupLanguageBar(ITfThreadMgr pThreadMgr, uint tfClientId, bool isSecureMode)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetupPunctuationPair()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InitializeSampleIMECompartment(ITfThreadMgr pThreadMgr, uint tfClientId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool SetupDictionaryFile()
+        {
+            throw new NotImplementedException();
         }
     }
 }

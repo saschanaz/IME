@@ -72,7 +72,10 @@ namespace SampleIMESharp
                     throw new Exception();
                 }
 
-                // ...
+                if (!_AddTextProcessorEngine())
+                {
+                    throw new Exception();
+                }
 
                 return new HRESULT { Code = 0 };
             }
