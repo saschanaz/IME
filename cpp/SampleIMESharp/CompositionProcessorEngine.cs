@@ -140,6 +140,11 @@ namespace SampleIMESharp
 
         private void SetupPreserved(ITfThreadMgr pThreadMgr, uint tfClientId)
         {
+            TF_PRESERVEDKEY preservedKeyImeMode;
+            preservedKeyImeMode.uVKey = VirtualKeys.VK_SHIFT;
+            preservedKeyImeMode.uModifiers = DefinedModifiers._TF_MOD_ON_KEYUP_SHIFT_ONLY;
+            SetPreservedKey(Globals.SampleIMEGuidImeModePreserveKey, preservedKeyImeMode, Globals.ImeModeDescription);
+
             throw new NotImplementedException();
         }
 
@@ -167,6 +172,11 @@ namespace SampleIMESharp
         }
 
         private void InitializeSampleIMECompartment(ITfThreadMgr pThreadMgr, uint tfClientId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetPreservedKey(Guid clsid, TF_PRESERVEDKEY tfPresevedKey, string pwszDescription)
         {
             throw new NotImplementedException();
         }

@@ -7,17 +7,33 @@ namespace SampleIMESharp
 {
     static class Globals
     {
-        // HINSTANCE dllInstanceHandle;
-
-        // LONG dllRefCount = -1;
-
-        // CRITICAL_SECTION CS;
-        // HFONT defaultlFontHandle;				// Global font object we use everywhere;
+        public static readonly int SUBLANG_ENGLISH_US = 0x01;
+        public static readonly int LANG_ENGLISH = 0x09;
+        public static readonly int IDIS_SAMPLEIME = 12;
+        public static readonly int IDS_DEFAULT_FONT = 13;
+        public static readonly int IDS_IME_MODE = 20;
+        public static readonly int IDI_IME_MODE_ON = 21;
+        public static readonly int IDI_IME_MODE_OFF = 22;
+        public static readonly int IDS_DOUBLE_SINGLE_BYTE = 23;
+        public static readonly int IDI_DOUBLE_SINGLE_BYTE_ON = 24;
+        public static readonly int IDI_DOUBLE_SINGLE_BYTE_OFF = 25;
+        public static readonly int IDS_PUNCTUATION = 26;
+        public static readonly int IDI_PUNCTUATION_ON = 27;
+        public static readonly int IDI_PUNCTUATION_OFF = 28;
+        public static readonly int IDR_VERSION2 = 107;
 
         public static readonly string TEXTSERVICE_MODEL = "Apartment";
         // MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
         public static readonly LangID TEXTSERVICE_LANGID = new LangID((0x02 << 10) | 0x04);
         public static readonly uint TEXTSERVICE_ICON_INDEX = unchecked((uint)-12);
+        public static readonly string TEXTSERVICE_DIC = "SampleIMESimplifiedQuanPin.txt";
+
+        public static readonly int IME_MODE_ON_ICON_INDEX = IDI_IME_MODE_ON;
+        public static readonly int IME_MODE_OFF_ICON_INDEX = IDI_IME_MODE_OFF;
+        public static readonly int IME_DOUBLE_ON_INDEX = IDI_DOUBLE_SINGLE_BYTE_ON;
+        public static readonly int IME_DOUBLE_OFF_INDEX = IDI_DOUBLE_SINGLE_BYTE_OFF;
+        public static readonly int IME_PUNCTUATION_ON_INDEX = IDI_PUNCTUATION_ON;
+        public static readonly int IME_PUNCTUATION_OFF_INDEX = IDI_PUNCTUATION_OFF;
 
         //---------------------------------------------------------------------
         // SampleIME CLSID
@@ -144,5 +160,39 @@ namespace SampleIMESharp
             0x4732,
             0x90, 0x7a, 0x3b, 0xcb, 0x15, 0xa, 0x1, 0xa8
         );
+
+
+        //---------------------------------------------------------------------
+        // Unicode byte order mark
+        //---------------------------------------------------------------------
+        public static readonly char UnicodeByteOrderMark = (char)0xFEFF;
+
+        //---------------------------------------------------------------------
+        // dictionary table delimiter
+        //---------------------------------------------------------------------
+        public static readonly char KeywordDelimiter = '=';
+        public static readonly char StringDelimiter = '\"';
+
+        //---------------------------------------------------------------------
+        // defined item in setting file table [PreservedKey] section
+        //---------------------------------------------------------------------
+        public static readonly string ImeModeDescription = "Chinese/English input (Shift)";
+        public static readonly int ImeModeOnIcoIndex = IME_MODE_ON_ICON_INDEX;
+        public static readonly int ImeModeOffIcoIndex = IME_MODE_OFF_ICON_INDEX;
+
+        public static readonly string DoubleSingleByteDescription = "Double/Single byte (Shift+Space)";
+        public static readonly int DoubleSingleByteOnIcoIndex = IME_DOUBLE_ON_INDEX;
+        public static readonly int DoubleSingleByteOffIcoIndex = IME_DOUBLE_OFF_INDEX;
+
+        public static readonly string PunctuationDescription = "Chinese/English punctuation (Ctrl+.)";
+        public static readonly int PunctuationOnIcoIndex = IME_PUNCTUATION_ON_INDEX;
+        public static readonly int PunctuationOffIcoIndex = IME_PUNCTUATION_OFF_INDEX;
+
+        //---------------------------------------------------------------------
+        // defined item in setting file table [LanguageBar] section
+        //---------------------------------------------------------------------
+        public static readonly string LangbarImeModeDescription = "Conversion mode";
+        public static readonly string LangbarDoubleSingleByteDescription = "Character width";
+        public static readonly string LangbarPunctuationDescription = "Punctuation";
     }
 }
